@@ -12,7 +12,7 @@ class SideMenu extends StatelessWidget {
       child: ListView(
         children: [
           DrawerHeader(
-            child: Image.asset("assets/images/logo.png"),
+            child: FlutterLogo(style: FlutterLogoStyle.horizontal, textColor: Colors.white,),
           ),
           DrawerListTile(
             title: "Dashboard",

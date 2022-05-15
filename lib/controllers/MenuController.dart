@@ -1,6 +1,8 @@
+import 'package:admin/services/app.data.dart';
 import 'package:flutter/material.dart';
+import 'package:pmvvm/view_model.dart';
 
-class MenuController extends ChangeNotifier {
+class MenuControllerViewModel extends ViewModel {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   GlobalKey<ScaffoldState> get scaffoldKey => _scaffoldKey;
@@ -10,4 +12,6 @@ class MenuController extends ChangeNotifier {
       _scaffoldKey.currentState!.openDrawer();
     }
   }
+
+  String get userName => AppData().userName;
 }

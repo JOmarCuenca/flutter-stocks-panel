@@ -1,12 +1,12 @@
 import 'package:admin/controllers/MenuController.dart';
 import 'package:admin/responsive.dart';
 import 'package:flutter/material.dart';
-import 'package:pmvvm/views/stateless.view.dart';
+import 'package:pmvvm/views/index.dart';
 
 import '../../../constants.dart';
 
-class MyTransactions extends StatelessView<MenuControllerViewModel> {
-  const MyTransactions({
+class MyExpenses extends StatelessView<MenuControllerViewModel> {
+  const MyExpenses({
     Key? key,
   }) : super(key: key, reactive: false);
 
@@ -18,7 +18,7 @@ class MyTransactions extends StatelessView<MenuControllerViewModel> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "My Transactions",
+              "My Expenses",
               style: Theme.of(context).textTheme.subtitle1,
             ),
             ElevatedButton.icon(
@@ -29,7 +29,7 @@ class MyTransactions extends StatelessView<MenuControllerViewModel> {
                       defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
                 ),
               ),
-              onPressed: viewModel.addStock,
+              onPressed: viewModel.addExpense,
               icon: Icon(Icons.add),
               label: Text("Add New"),
             ),

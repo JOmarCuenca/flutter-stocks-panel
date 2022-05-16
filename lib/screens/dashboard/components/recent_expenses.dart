@@ -1,5 +1,5 @@
 import 'package:admin/controllers/MenuController.dart';
-import 'package:admin/models/RecentStock.dart';
+import 'package:admin/models/RecentExpenses.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -7,8 +7,8 @@ import 'package:pmvvm/views/stateless.view.dart';
 
 import '../../../constants.dart';
 
-class RecentFiles extends StatelessView<MenuControllerViewModel> {
-  const RecentFiles({
+class RecentExpenses extends StatelessView<MenuControllerViewModel> {
+  const RecentExpenses({
     Key? key,
   }) : super(key: key);
 
@@ -24,7 +24,7 @@ class RecentFiles extends StatelessView<MenuControllerViewModel> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Recent Transactions",
+            "Recent Expenses",
             style: Theme.of(context).textTheme.subtitle1,
           ),
           SizedBox(
@@ -34,7 +34,7 @@ class RecentFiles extends StatelessView<MenuControllerViewModel> {
               minWidth: 600,
               columns: [
                 DataColumn(
-                  label: Text("Company Name"),
+                  label: Text("Product Name"),
                 ),
                 DataColumn(
                   label: Text("Date"),
@@ -42,13 +42,10 @@ class RecentFiles extends StatelessView<MenuControllerViewModel> {
                 DataColumn(
                   label: Text("Amount"),
                 ),
-                DataColumn(
-                  label: Text("Delta"),
-                ),
               ],
               rows: List.generate(
-                viewModel.currentStocks.length,
-                (index) => recentFileDataRow(viewModel.currentStocks[index]),
+                viewModel.currentExpenses.length,
+                (index) => recentFileDataRow(viewModel.currentExpenses[index]),
               ),
             ),
           ),
@@ -58,22 +55,14 @@ class RecentFiles extends StatelessView<MenuControllerViewModel> {
   }
 }
 
-DataRow recentFileDataRow(RecentStock fileInfo) {
-  final color = fileInfo.delta > 0 ? Colors.green : Colors.red;
+DataRow recentFileDataRow(RecentExpense expense) {
   return DataRow(
     cells: [
       DataCell(
-        Row(
-          children: [
-            Icon(fileInfo.delta > 0 ? Icons.arrow_drop_up : Icons.arrow_drop_down, color: color,),
-            SizedBox(width: 5,),
-            Flexible(child: Text(fileInfo.title,))
-          ],
-        )
+        Flexible(child: Text(expense.name,))
       ),
-      DataCell(Text(DateFormat.yMd().format(fileInfo.date))),
-      DataCell(Text("\$ ${fileInfo.amount.toStringAsFixed(2)}")),
-      DataCell(Text("\$ ${fileInfo.delta.toStringAsFixed(2)}", style: TextStyle(color: color),)),
+      DataCell(Text(DateFormat.yMd().format(expense.date))),
+      DataCell(Text("\$ ${expense.amount.toStringAsFixed(2)}")),
     ],
   );
 }

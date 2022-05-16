@@ -18,13 +18,15 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Stock Panel',
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: bgColor,
-        textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
+        textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context)
+                .textTheme
+                .copyWith(headline3: TextStyle(color: Colors.white)))
             .apply(bodyColor: Colors.white),
         canvasColor: secondaryColor,
       ),
       home: MVVM(
         viewModel: MenuControllerViewModel(),
-        view: () =>  MainScreenView(),
+        view: () => MainScreenView(),
       ),
     );
   }

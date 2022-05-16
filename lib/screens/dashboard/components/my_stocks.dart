@@ -1,16 +1,18 @@
+import 'package:admin/controllers/MenuController.dart';
 import 'package:admin/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:admin/models/MyFiles.dart';
+import 'package:pmvvm/views/stateless.view.dart';
 import '../../../constants.dart';
 import 'file_info_card.dart';
 
-class MyFiles extends StatelessWidget {
+class MyFiles extends StatelessView<MenuControllerViewModel> {
   const MyFiles({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget render(BuildContext context, MenuControllerViewModel viewModel) {
     final Size _size = MediaQuery.of(context).size;
     return Column(
       children: [
@@ -29,7 +31,7 @@ class MyFiles extends StatelessWidget {
                       defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
                 ),
               ),
-              onPressed: () {},
+              onPressed: viewModel.addStock,
               icon: Icon(Icons.add),
               label: Text("Add New"),
             ),
